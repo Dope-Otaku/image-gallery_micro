@@ -53,6 +53,56 @@ app.post("/book", (req, res) => {
   res.send("A new book created with success!");
 });
 
+app.get("/books", (req, res) => {
+  Book.find()
+    .then((books) => {
+      // console.log(books);
+      res.json(books);
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+app.get("/book/:id", (req, res) => {
+  Book.findById(req.params.id)
+    .then((book) => {
+      try {
+        if (book) {
+          res.json(book);
+        } else {
+          res.sendStatus(404);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+app.delete("/book/:id", (req, res) => {
+  Book.findByIdAndDelete(req.params.id)
+    .then((book) => {
+      if (book) {
+        res.send(`Book with id:${req.params.id} has been deleted`);
+      } else {
+        res.sendStatus(404); // Send a 404 status if the book is not found
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+//server listening on port 4545
 app.listen(4545, () => {
   console.log("Up and running! -- This is our book service");
 });
