@@ -3,7 +3,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const cors = require("cors");
 
+app.use(cors());
 app.use(bodyParser.json());
 
 //loading all env variables
