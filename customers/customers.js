@@ -60,6 +60,7 @@ app.get("/customer/:id", (req, res) => {
       if (customer) {
         res.json(customer);
       } else {
+        console.log("Invalid Id");
         res.send("Invalid Id");
       }
     })
@@ -74,7 +75,7 @@ app.delete("/customer/:id", (req, res) => {
   Customer.findByIdAndDelete(req.params.id)
     .then((customer) => {
       if (customer) {
-        res.send(`customer with id:${req.params.id} deleted successfully`);
+        console.log(`customer with id:${req.params.id} deleted successfully`);
       } else {
         res.send("Customer Not Found!");
       }
@@ -84,8 +85,10 @@ app.delete("/customer/:id", (req, res) => {
         throw err;
       }
     });
+  res.send(`customer with id:${req.params.id} deleted successfully`);
 });
 
+//server listening on 5555
 app.listen(5555, () => {
   console.log("up and running -- This is our customers service");
 });

@@ -90,7 +90,7 @@ app.delete("/book/:id", (req, res) => {
   Book.findByIdAndDelete(req.params.id)
     .then((book) => {
       if (book) {
-        res.send(`Book with id:${req.params.id} has been deleted`);
+        console.log(`Book with id:${req.params.id} has been deleted`);
       } else {
         res.sendStatus(404); // Send a 404 status if the book is not found
       }
@@ -100,6 +100,7 @@ app.delete("/book/:id", (req, res) => {
         throw err;
       }
     });
+  res.send(`Book with id:${req.params.id} has been deleted`);
 });
 
 //server listening on port 4545
