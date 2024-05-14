@@ -1,1 +1,3 @@
-# it's a image gallery basic project and some basic microservice is created
+# don't get fooled by the title ther is a surprise inside!
+
+## to start the app use nodemon (nodemon book.js)
